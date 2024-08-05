@@ -21,6 +21,29 @@ import swaggerUiExpress from 'swagger-ui-express'
 const app = express()
 const PORT = 8000
 
+const corsOptions ={
+  origin: true,
+  methods: ['GET', 'POST', 'UPDATE', 'DELETE'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+}
+
+// ****Cors****
+app.use(cors(corsOptions))
+
+app.get('/bienvenida', (req,res) => {
+  res.status(200).send({ mensaje: "Bienvenidos a SUShop"})
+})
+
+//****Server**** 
+//const SERVER = app.listen(PORT, () => {
+//console.log(`Server on port ${PORT}`)
+//  });
+  
+//  const io = new Server(SERVER)
+  
+
+
 //**** Connection MongoDB ******
 mongoose.connect(varenv.mongo_url)
 .then(() => console.log('DB is connected'))
@@ -109,7 +132,7 @@ app.use('/apidocs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs))
 //const io = new Server(server)
 
 
-/*
+
 //***** Routes Cookies ******
 app.get('/setCookie', (req, res) => {
     res.cookie('CookieCookie', 'Esto es una cookie :)', { maxAge: 3000000, signed: true }).send("Cookie creada")

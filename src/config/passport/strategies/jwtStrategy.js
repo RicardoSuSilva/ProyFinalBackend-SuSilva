@@ -8,9 +8,10 @@ const cookieExtractor = (req) => {
     //Si existen cookies, asigno mi cookie en especifico
     const token = req.cookies ? req.cookies.jwtCookie : {};
     console.log(token);
-    return token;
+    return token
 }
-/*** ESTRATEGIAS JWT *** */
+
+//*** ESTRATEGIAS JWT *** 
 
 const jwtOptions = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
